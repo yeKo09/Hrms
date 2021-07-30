@@ -12,4 +12,6 @@ public interface JobSeekerService {
 	Result signUp(JobSeeker jobSeeker) throws NumberFormatException, RemoteException;
 	
 	DataResult<List<JobSeeker>> getAll();
+	
+	DataResult<JobSeeker> getByFirstName(String firstName);
 }

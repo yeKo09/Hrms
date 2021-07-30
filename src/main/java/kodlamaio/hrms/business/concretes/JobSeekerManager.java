@@ -53,4 +53,11 @@ public class JobSeekerManager implements JobSeekerService{
 		return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findAll(), "İş arayanlar listesi başarıyla döndürüldü.");
 	}
 
+	@Override
+	public DataResult<JobSeeker> getByFirstName(String firstName) {
+		return new SuccessDataResult<JobSeeker>(this.jobSeekerDao.getByFirstName(firstName), "Aradiginiz kisi basariyla donduruldu.");
+	}
+
+	
+
 }

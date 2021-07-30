@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kodlamaio.hrms.business.abstracts.JobSeekerService;
@@ -36,4 +37,8 @@ public class JobSeekerController {
 		return this.jobSeekerService.getAll();
 	}
 	
+	@GetMapping("/getByFirstName")
+	public DataResult<JobSeeker> getByFirstName(@RequestParam String firstName){
+		return this.jobSeekerService.getByFirstName(firstName);
+	}
 }
