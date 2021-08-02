@@ -44,6 +44,9 @@ public class JobPosting {
 	@Column(name = "is_active")
 	private String isActive;
 	
+	@Column(name = "created_at")
+	private LocalDate createdAt;
+	
 	@ManyToOne()
 	@JoinColumn(name = "job_title_id")
 	private JobPosition jobPosition;

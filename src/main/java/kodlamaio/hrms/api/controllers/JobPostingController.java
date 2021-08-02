@@ -15,6 +15,7 @@ import kodlamaio.hrms.business.abstracts.JobPostingService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobPosting;
+import kodlamaio.hrms.entities.dtos.JobPostingWithEmployerAndJobTitleDto;
 
 @RestController
 @RequestMapping("/api/jobposting")
@@ -33,22 +34,22 @@ public class JobPostingController {
 	}
 	
 	@GetMapping("/getAllActiveJobPostings")
-	public DataResult<List<JobPosting>> getAllActiveJobPostings(){
+	public DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllActiveJobPostings(){
 		return this.jobPostingService.getAllActiveJobPostings();
 	}
 	
 	@GetMapping("/getByCompanyNameAndIsActive")
-	public DataResult<List<JobPosting>> getByEmployer_CompanyNameAndIsActive(@RequestParam String companyName){
+	public DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getByEmployer_CompanyNameAndIsActive(@RequestParam String companyName){
 		return this.jobPostingService.getByEmployer_CompanyNameAndIsActive(companyName);
 	}
 	
 	@GetMapping("/getAllSortedByDateASC")
-	public DataResult<List<JobPosting>> getAllSortedByDateASC(){
+	public DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllSortedByDateASC(){
 		return this.jobPostingService.getAllSortedByDateASC();
 	}
 	
 	@GetMapping("/getAllSortedByDateDESC")
-	public DataResult<List<JobPosting>> getAllSortedByDateDESC(){
+	public DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllSortedByDateDESC(){
 		return this.jobPostingService.getAllSortedByDateDESC();
 	}
 	
