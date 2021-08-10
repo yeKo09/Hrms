@@ -10,6 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.FutureOrPresent;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,6 +32,7 @@ public class JobPosting {
 	@Column(name = "id")
 	private int id;
 	
+	@NotBlank
 	@Column(name = "job_description")
 	private String jobDescription;
 	
@@ -35,15 +42,23 @@ public class JobPosting {
 	@Column(name = "maximum_wage")
 	private int maximumWage;
 	
+	@Min(value = 1)
+	@Max(value = 5)
+	@NotNull
 	@Column(name = "number_of_open_positions")
 	private int numberOfOpenPositions;
 	
+	@FutureOrPresent()
+	@NotNull
 	@Column(name = "deadline_date")
 	private LocalDate deadlineDate;
 	
+	@NotBlank
 	@Column(name = "is_active")
 	private String isActive;
 	
+	@FutureOrPresent
+	@NotNull
 	@Column(name = "created_at")
 	private LocalDate createdAt;
 	

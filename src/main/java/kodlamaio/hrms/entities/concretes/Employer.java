@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -26,12 +27,15 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties({"hibernateLazyInitializer","handler","jobPostings"})
 public class Employer extends User{
 	
+	@NotBlank
 	@Column(name = "company_name")
 	private String companyName;
 	
+	@NotBlank
 	@Column(name = "website")
 	private String website;
 	
+	@NotBlank
 	@Column(name = "phone_number")
 	private String phoneNumber;
 	

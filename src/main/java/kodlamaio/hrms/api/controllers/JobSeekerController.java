@@ -4,6 +4,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,17 +29,17 @@ public class JobSeekerController {
 	}
 	
 	@PostMapping("/signup")
-	public Result signUp(@RequestBody JobSeeker jobSeeker) throws NumberFormatException, RemoteException {
-		return this.jobSeekerService.signUp(jobSeeker);
+	public ResponseEntity<Result> signUp(@RequestBody JobSeeker jobSeeker) throws NumberFormatException, RemoteException {
+		return ResponseEntity.ok(this.jobSeekerService.signUp(jobSeeker));
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<JobSeeker>> getAll(){
-		return this.jobSeekerService.getAll();
+	public ResponseEntity<DataResult<List<JobSeeker>>> getAll(){
+		return ResponseEntity.ok(this.jobSeekerService.getAll());
 	}
 	
 	@GetMapping("/getByFirstName")
-	public DataResult<JobSeeker> getByFirstName(@RequestParam String firstName){
-		return this.jobSeekerService.getByFirstName(firstName);
+	public ResponseEntity<DataResult<JobSeeker>> getByFirstName(@RequestParam String firstName){
+		return ResponseEntity.ok(this.jobSeekerService.getByFirstName(firstName));
 	}
 }

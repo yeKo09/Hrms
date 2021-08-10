@@ -1,8 +1,10 @@
 package kodlamaio.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,13 +27,13 @@ public class CityController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(City city) {
-		return this.cityService.add(city);
+	public ResponseEntity<Result> add(@RequestBody City city) {
+		return ResponseEntity.ok(this.cityService.add(city));
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<City>> getAll(){
-		return this.cityService.getAll();
+	public ResponseEntity<DataResult<List<City>>> getAll(){
+		return ResponseEntity.ok(this.cityService.getAll());
 	}
 	
 }

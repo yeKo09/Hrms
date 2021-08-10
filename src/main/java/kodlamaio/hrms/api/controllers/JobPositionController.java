@@ -3,6 +3,7 @@ package kodlamaio.hrms.api.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,13 +27,13 @@ public class JobPositionController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<JobPosition>> getAll(){
-		return this.jobPositionService.getAll();
+	public ResponseEntity<DataResult<List<JobPosition>>> getAll(){
+		return ResponseEntity.ok(this.jobPositionService.getAll());
 	}
 	
 	@PostMapping("/addjob")
-	public Result add(@RequestBody JobPosition jobPosition) {
-		return this.jobPositionService.add(jobPosition);
+	public ResponseEntity<Result> add(@RequestBody JobPosition jobPosition) {
+		return ResponseEntity.ok(this.jobPositionService.add(jobPosition));  
 	}
 	
 }
