@@ -37,10 +37,10 @@ public class JobSeekerExperience {
 	
 	@Column(name = "started_at")
 	@NotNull
-	private int startedAt;
+	private String experienceStartedAt;
 	
 	@Column(name = "quitted_at")
-	private int quittedAt;
+	private String quittedAt;
 	
 	@ManyToOne()
 	@JoinColumn(name = "cv_id", referencedColumnName = "id")

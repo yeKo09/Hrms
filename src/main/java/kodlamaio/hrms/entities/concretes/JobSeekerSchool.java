@@ -37,10 +37,10 @@ public class JobSeekerSchool {
 	
 	@Column(name = "started_at")
 	@NotNull
-	private int startedAt;
+	private String schoolStartedAt;
 	
 	@Column(name = "graduated_at")
-	private int graduatedAt;
+	private String graduatedAt;
 	
 	@ManyToOne()
 	@JoinColumn(name = "cv_id", referencedColumnName = "id")
