@@ -12,6 +12,9 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_seeker_languages")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class JobSeekerLanguage {
 
 	@Id
@@ -37,6 +41,7 @@ public class JobSeekerLanguage {
 	@Max(value = 5)
 	private int languageLevel;
 	
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "cv_id", referencedColumnName = "id")
 	private JobSeekerCv jobSeekerCv;

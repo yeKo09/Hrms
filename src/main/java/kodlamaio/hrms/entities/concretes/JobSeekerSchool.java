@@ -11,6 +11,9 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_seeker_schools")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class JobSeekerSchool {
 	
 	@Id
@@ -42,6 +46,7 @@ public class JobSeekerSchool {
 	@Column(name = "graduated_at")
 	private String graduatedAt;
 	
+	@JsonIgnore
 	@ManyToOne()
 	@JoinColumn(name = "cv_id", referencedColumnName = "id")
 	private JobSeekerCv jobSeekerCv;

@@ -11,8 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -52,19 +50,15 @@ public class JobSeekerCv {
 	@JoinColumn(name = "job_seeker_id")
 	private JobSeeker jobSeeker;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeekerCv")
 	private List<JobSeekerSchool> jobSeekerSchools;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeekerCv")
 	private List<JobSeekerExperience> jobSeekerExperiences;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeekerCv")
 	private List<JobSeekerLanguage> jobSeekerLanguages;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy = "jobSeekerCv")
 	private List<JobSeekerTalent> jobSeekerTalents;
 	
