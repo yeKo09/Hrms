@@ -14,7 +14,6 @@ import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.JobPostingDao;
 import kodlamaio.hrms.entities.concretes.JobPosting;
-import kodlamaio.hrms.entities.dtos.JobPostingWithEmployerAndJobTitleDto;
 
 @Service
 public class JobPostingManager implements JobPostingService{
@@ -33,27 +32,27 @@ public class JobPostingManager implements JobPostingService{
 	}
 
 	@Override
-	public DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllActiveJobPostings() {
-		return new SuccessDataResult<List<JobPostingWithEmployerAndJobTitleDto>>(this.jobPostingDao.getAllActiveJobPostings(),
+	public DataResult<List<JobPosting>> getAllActiveJobPostings() {
+		return new SuccessDataResult<List<JobPosting>>(this.jobPostingDao.getAllActiveJobPostings(),
 				"Sistemdeki tüm aktif iş ilanları başarıyla döndürüldü");
 	}
 	
 	@Override
-	public DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getByEmployer_CompanyNameAndIsActive(String companyName) {
-		return new SuccessDataResult<List<JobPostingWithEmployerAndJobTitleDto>>(this.jobPostingDao.getByEmployer_CompanyNameAndIsActive(companyName,"yes"),
+	public DataResult<List<JobPosting>> getByEmployer_CompanyNameAndIsActive(String companyName) {
+		return new SuccessDataResult<List<JobPosting>>(this.jobPostingDao.getByEmployer_CompanyNameAndIsActive(companyName,"yes"),
 				companyName + " adlı şirkete ait tüm aktif iş ilanları başarıyla listelenmiştir.");
 	}
 
 	@Override
-	public DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllSortedByDateASC() {
+	public DataResult<List<JobPosting>> getAllSortedByDateASC() {
 		Sort sort = Sort.by(Sort.Direction.ASC, "deadlineDate");
-		return new SuccessDataResult<List<JobPostingWithEmployerAndJobTitleDto>>(this.jobPostingDao.getByIsActive("yes", sort));
+		return new SuccessDataResult<List<JobPosting>>(this.jobPostingDao.getByIsActive("yes", sort));
 	}
 
 	@Override
-	public DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllSortedByDateDESC() {
+	public DataResult<List<JobPosting>> getAllSortedByDateDESC() {
 		Sort sort = Sort.by(Sort.Direction.DESC, "deadlineDate");
-		return new SuccessDataResult<List<JobPostingWithEmployerAndJobTitleDto>>(this.jobPostingDao.getByIsActive("yes", sort));
+		return new SuccessDataResult<List<JobPosting>>(this.jobPostingDao.getByIsActive("yes", sort));
 	}
 
 	@Override

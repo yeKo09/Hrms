@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,11 +26,11 @@ import kodlamaio.hrms.business.abstracts.JobPostingService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobPosting;
-import kodlamaio.hrms.entities.dtos.JobPostingWithEmployerAndJobTitleDto;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 
 @RestController
 @RequestMapping("/api/jobposting")
+@CrossOrigin
 public class JobPostingController {
 
 	private JobPostingService jobPostingService;
@@ -45,7 +46,7 @@ public class JobPostingController {
 	}
 	
 	@GetMapping("/getAllActiveJobPostings")
-	public ResponseEntity<DataResult<List<JobPostingWithEmployerAndJobTitleDto>>> getAllActiveJobPostings(){
+	public ResponseEntity<DataResult<List<JobPosting>>> getAllActiveJobPostings(){
 		return ResponseEntity.ok(this.jobPostingService.getAllActiveJobPostings());
 	}
 	
@@ -72,17 +73,17 @@ public class JobPostingController {
 	}
 	
 	@GetMapping("/getAllSortedByDateASC")
-	public ResponseEntity<DataResult<List<JobPostingWithEmployerAndJobTitleDto>>> getAllSortedByDateASC(){
+	public ResponseEntity<DataResult<List<JobPosting>>> getAllSortedByDateASC(){
 		return ResponseEntity.ok(this.jobPostingService.getAllSortedByDateASC());
 	}
 	
 	@GetMapping("/getAllSortedByDateDESC")
-	public ResponseEntity<DataResult<List<JobPostingWithEmployerAndJobTitleDto>>> getAllSortedByDateDESC(){
+	public ResponseEntity<DataResult<List<JobPosting>>> getAllSortedByDateDESC(){
 		return ResponseEntity.ok(this.jobPostingService.getAllSortedByDateDESC());
 	}
 	
 	@PutMapping("/deactivateJobPosting")
-	public ResponseEntity<Result> deactiveJobPosting(@RequestParam int id) {
+	public ResponseEntity<Result> deactivateJobPosting(@RequestParam int id) {
 		return ResponseEntity.ok(this.jobPostingService.deactivateJobPosting(id));
 	}
 }
