@@ -5,6 +5,7 @@ import java.util.List;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.concretes.JobPosting;
+import kodlamaio.hrms.entities.dtos.JobPostingWithEmployerAndJobTitleDto;
 
 public interface JobPostingService {
 
@@ -12,11 +13,15 @@ public interface JobPostingService {
 	
 	DataResult<List<JobPosting>> getAllActiveJobPostings();
 	
-	DataResult<List<JobPosting>> getByEmployer_CompanyNameAndIsActive(String companyName);
+	DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllActiveJobPostingsWithDto();
 	
-	DataResult<List<JobPosting>> getAllSortedByDateASC();
+	DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getByCompanyNameDto(String companyName);
 	
-	DataResult<List<JobPosting>> getAllSortedByDateDESC();
+	DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllSortedByDateDtoASC();
+	
+	DataResult<List<JobPostingWithEmployerAndJobTitleDto>> getAllSortedByDateDtoDESC();
+	
+	DataResult<JobPosting> getById(int id);
 	
 	Result deactivateJobPosting(int id);
 }

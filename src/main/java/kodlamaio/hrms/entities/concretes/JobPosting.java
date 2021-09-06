@@ -9,12 +9,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +29,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_postings")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class JobPosting {
 
 	@Id
@@ -73,4 +78,16 @@ public class JobPosting {
 	@ManyToOne()
 	@JoinColumn(name = "user_id")
 	private Employer employer;
+	
+	@ManyToOne()
+	@JoinColumn(name = "work_place_id")
+	private WorkPlace workPlace;
+	
+	@ManyToOne()
+	@JoinColumn(name = "work_time_id")
+	private WorkTime workTime;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "jobPosting")
+	private JobPostingStaffValidation jobPostingStaffValidation;
 }

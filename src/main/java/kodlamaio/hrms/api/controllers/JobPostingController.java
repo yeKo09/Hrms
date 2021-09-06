@@ -50,9 +50,9 @@ public class JobPostingController {
 		return ResponseEntity.ok(this.jobPostingService.getAllActiveJobPostings());
 	}
 	
-	@GetMapping("/getByCompanyNameAndIsActive")
-	public ResponseEntity<?> getByEmployer_CompanyNameAndIsActive(@RequestParam String companyName){
-		return ResponseEntity.ok(this.jobPostingService.getByEmployer_CompanyNameAndIsActive(companyName));
+	@GetMapping("/getByCompanyName")
+	public ResponseEntity<?> getByCompanyName(@RequestParam String companyName){
+		return ResponseEntity.ok(this.jobPostingService.getByCompanyNameDto(companyName));
 	}
 	
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -73,13 +73,23 @@ public class JobPostingController {
 	}
 	
 	@GetMapping("/getAllSortedByDateASC")
-	public ResponseEntity<DataResult<List<JobPosting>>> getAllSortedByDateASC(){
-		return ResponseEntity.ok(this.jobPostingService.getAllSortedByDateASC());
+	public ResponseEntity<?> getAllSortedByDateASC(){
+		return ResponseEntity.ok(this.jobPostingService.getAllSortedByDateDtoASC());
 	}
 	
 	@GetMapping("/getAllSortedByDateDESC")
-	public ResponseEntity<DataResult<List<JobPosting>>> getAllSortedByDateDESC(){
-		return ResponseEntity.ok(this.jobPostingService.getAllSortedByDateDESC());
+	public ResponseEntity<?> getAllSortedByDateDESC(){
+		return ResponseEntity.ok(this.jobPostingService.getAllSortedByDateDtoDESC());
+	}
+	
+	@GetMapping("/getAllActiveJobPostingsWithDto")
+	public ResponseEntity<?> getAllActiveJobPostingsWithDto(){
+		return ResponseEntity.ok(this.jobPostingService.getAllActiveJobPostingsWithDto());
+	}
+	
+	@GetMapping("/getById")
+	public ResponseEntity<?> getById(@RequestParam int id){
+		return ResponseEntity.ok(this.jobPostingService.getById(id));
 	}
 	
 	@PutMapping("/deactivateJobPosting")
